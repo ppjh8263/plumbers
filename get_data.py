@@ -1,14 +1,7 @@
-from urllib.request import Request, urlopen
-from urllib.parse import urlencode, quote_plus,unquote
-import requests
 from urllib import request
-from xml.dom import minidom
-import json
-
 from xml.etree.ElementTree import fromstring
-
-import pickle
 import numpy as np
+import pandas as pd
 from PIL import Image
 
 import util

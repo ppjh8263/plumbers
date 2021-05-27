@@ -1,3 +1,8 @@
+import pickle
+from urllib.request import Request, urlopen
+from xml.dom import minidom
+
+
 def request_xml(page_number):
     encodingKey = "Ud3EhGOpbJ2xenIcXMsJcMJhXzH8U8v29DapZ0PioWkUFZmz1T8W4WJ7cjNlEG9yXPZGsFENb9jGqUBLAzlpjg%3D%3D"
     decodingKey = "Ud3EhGOpbJ2xenIcXMsJcMJhXzH8U8v29DapZ0PioWkUFZmz1T8W4WJ7cjNlEG9yXPZGsFENb9jGqUBLAzlpjg=="
@@ -24,3 +29,15 @@ def open_pickle(file_name):
     with open(file_name,"rb") as f:
         data = pickle.load(f)
     return data
+
+
+def model_save(model_, history, model_name, model_weight, model_history_name):
+    model_json = model_.to_json()
+    with open('./result/model/json/'+model_name, "w") as json_file:
+        json_file.write(model_json)
+
+    model_.save_weights('./result/model/weight/'+model_weight)
+    
+    
+    with open('./result/history/'+model_history_name, 'wb') as f:
+        pickle.dump(history.history, f)
